@@ -52,6 +52,21 @@ elif choice == "Predict with CSV":
     
     st.write(f"Your CSV file must contain the following columns: {', '.join(required_columns)}")
 
+    # Show an example of the expected CSV format
+    sample_data = pd.DataFrame({
+        'Cement': [540.0, 520.0],
+        'Blast Furnace Slag': [0.0, 30.0],
+        'Fly Ash': [0.0, 10.0],
+        'Water': [162.0, 162.0],
+        'Superplasticizer': [2.5, 2.0],
+        'Coarse Aggregate': [1040.0, 1050.0],
+        'Fine Aggregate': [676.0, 680.0],
+        'Age (day)': [28, 14]
+    })
+
+    st.write("Example of the expected CSV format:")
+    st.write(sample_data)
+
     # File uploader for CSV
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
@@ -76,4 +91,4 @@ elif choice == "Predict with CSV":
             st.download_button("Download Predictions", csv, "predictions.csv", "text/csv")
 
         else:
-            st.error(f"CSV file must contain the following columns: {required_columns}")
+            st.error(f"CSV file must contain the following columns: {', '.join(required_columns)}")
